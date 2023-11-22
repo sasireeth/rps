@@ -25,7 +25,7 @@ const choicesList = [
 ]
 
 class App extends Component {
-  state = {score: 0, isActive: true}
+  state = {score: 0}
 
   incrementScore = () => {
     this.setState(prev => ({score: prev.score + 1}))
@@ -35,20 +35,14 @@ class App extends Component {
     this.setState(prev => ({score: prev.score - 1}))
   }
 
-  change = () => {
-    this.setState(prev => ({isActive: !prev.isActive}))
-  }
-
   render() {
-    const {score, isActive} = this.state
+    const {score} = this.state
     return (
       <CartContext.Provider
         value={{
           score,
-          isActive,
           incrementScore: this.incrementScore,
           decrementScore: this.decrementScore,
-          change: this.change,
         }}
       >
         <Back>

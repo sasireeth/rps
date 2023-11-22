@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import CartContext from '../../context/CartContext'
 import {Img, Hom, But} from './styledComponents'
-
+import Item from '../Item'
 import Game from '../Game'
 
 const choicesList = [
@@ -26,31 +26,25 @@ const choicesList = [
 ]
 
 class Home extends Component {
-  state = {sel: [], isActive: true}
+  state = {sel: '', isActive: true}
 
-  click = () => {
-    this.setState(pre => ({isActive: !pre.isActive}))
+  click = item => {
+    console.log(item)
+    this.setState(pre => ({sel: item, isActive: !pre.isActive}))
   }
 
   render() {
-    const {isActive} = this.state
+    const {isActive, sel} = this.state
     return (
       <>
         {isActive ? (
           <Hom>
             {choicesList.map(each => (
-              <But
-                onClick={this.click}
-                type="button"
-                className="btn"
-                data-testid={each.testid}
-              >
-                <Img src={each.imageUrl} alt="your choice" />.
-              </But>
+              <Item click={this.click} item={each} />
             ))}
           </Hom>
         ) : (
-          <Game item={choicesList[1]} />
+          <Game item={sel} click={this.click} />
         )}
       </>
     )

@@ -26,12 +26,13 @@ const choicesList = [
 const Game = props => (
   <CartContext.Consumer>
     {value => {
-      const {item} = props
+      const {item, click} = props
       const {id, imageUrl} = item
-      const {score, incrementScore, decrementScore, change} = value
+      const {score, incrementScore, decrementScore} = value
       const rnd = Math.floor(Math.random() * 3)
-      console.log(rnd)
+      console.log('Hi')
       const id1 = choicesList[rnd].id
+      const ur = choicesList[rnd].imageUrl
       let res = ''
       if (id === 'ROCK' && id1 === 'ROCK') {
         res = 'IT IS DRAW'
@@ -52,6 +53,7 @@ const Game = props => (
       } else if (id === 'SCISSORS' && id1 === 'SCISSORS') {
         res = 'IT IS DRAW'
       }
+      console.log(ur)
       if (res === 'YOU WIN') {
         incrementScore()
       }
@@ -59,7 +61,7 @@ const Game = props => (
         decrementScore()
       }
       const clik = () => {
-        change()
+        click(item)
       }
       return (
         <div>
@@ -70,7 +72,7 @@ const Game = props => (
             </div>
             <div>
               <h1>OPPONENT</h1>
-              <img src={choicesList[rnd].imageUrl} />
+              <img src={ur} />
             </div>
           </div>
           <div>
