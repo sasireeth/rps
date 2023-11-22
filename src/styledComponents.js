@@ -7,4 +7,5 @@ export const Back = styled.div`
   background-color: #223a5f;
   align-items: center;
   padding: 25px;
+  height: 100vh;
 `

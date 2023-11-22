@@ -1,5 +1,5 @@
 import CartContext from '../../context/CartContext'
-import {Header1, Headercon1, Headercon2} from './styledComponents'
+import {Header1, Headercon1, Headercon2, Score} from './styledComponents'
 
 const Header = props => (
   <CartContext.Consumer>
@@ -8,13 +8,15 @@ const Header = props => (
       return (
         <Header1>
           <Headercon1>
-            <p>ROCK</p>
-            <p>PAPER</p>
-            <p>SCISSORS</p>
+            <h1>
+              Rock <br />
+              Paper
+              <br /> Scissors
+            </h1>
           </Headercon1>
           <Headercon2>
-            <h1>Score</h1>
-            <p>{score}</p>
+            <p>Score</p>
+            <Score>{score}</Score>
           </Headercon2>
         </Header1>
       )

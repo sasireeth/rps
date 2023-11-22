@@ -27,12 +27,16 @@ const choicesList = [
 class App extends Component {
   state = {score: 0}
 
-  incrementScore = () => {
-    this.setState(prev => ({score: prev.score + 1}))
+  incrementScore = res => {
+    if (res === 'YOU WIN') {
+      this.setState(prev => ({score: prev.score + 1}))
+    }
   }
 
-  decrementScore = () => {
-    this.setState(prev => ({score: prev.score - 1}))
+  decrementScore = res => {
+    if (res === 'YOU LOSE') {
+      this.setState(prev => ({score: prev.score - 1}))
+    }
   }
 
   render() {

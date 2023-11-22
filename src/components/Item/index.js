@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import {Img, Hom, But} from './styledComponents'
+import CartContext from '../../context/CartContext'
 
 const Item = props => {
   const {click, item} = props
@@ -8,8 +9,8 @@ const Item = props => {
     click(item)
   }
   return (
-    <But onClick={cl} type="button" className="btn" data-testid={testid}>
-      <Img src={imageUrl} alt="your choice" />.
+    <But onClick={cl} type="button" data-testid={testid}>
+      <Img src={imageUrl} alt={id} />.
     </But>
   )
 }

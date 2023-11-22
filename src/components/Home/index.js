@@ -3,6 +3,7 @@ import CartContext from '../../context/CartContext'
 import {Img, Hom, But} from './styledComponents'
 import Item from '../Item'
 import Game from '../Game'
+import './index.css'
 
 const choicesList = [
   {
@@ -26,26 +27,35 @@ const choicesList = [
 ]
 
 class Home extends Component {
-  state = {sel: '', isActive: true}
+  state = {sel: ''}
 
   click = item => {
-    console.log(item)
-    this.setState(pre => ({sel: item, isActive: !pre.isActive}))
+    const i1 = document.getElementById('c1')
+    const i2 = document.getElementById('c2')
+    i2.style.display = 'block'
+    i1.style.display = 'none'
+    this.setState(pre => ({sel: item}))
+  }
+
+  swap = () => {
+    const i1 = document.getElementById('c1')
+    const i2 = document.getElementById('c2')
+    i2.style.display = 'none'
+    i1.style.display = 'block'
   }
 
   render() {
-    const {isActive, sel} = this.state
+    const {sel} = this.state
     return (
       <>
-        {isActive ? (
-          <Hom>
-            {choicesList.map(each => (
-              <Item click={this.click} item={each} />
-            ))}
-          </Hom>
-        ) : (
-          <Game item={sel} click={this.click} />
-        )}
+        <Hom id="c1">
+          {choicesList.map(each => (
+            <Item click={this.click} item={each} key={each.id} />
+          ))}
+        </Hom>
+        <div id="c2" className="c2">
+          <Game item={sel} swap={this.swap} />
+        </div>
       </>
     )
   }

@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import CartContext from '../../context/CartContext'
 import {Img, Hom, But} from './styledComponents'
+import './index.css'
 
 const choicesList = [
   {
@@ -26,7 +27,7 @@ const choicesList = [
 const Game = props => (
   <CartContext.Consumer>
     {value => {
-      const {item, click} = props
+      const {item, swap} = props
       const {id, imageUrl} = item
       const {score, incrementScore, decrementScore} = value
       const rnd = Math.floor(Math.random() * 3)
@@ -54,30 +55,26 @@ const Game = props => (
         res = 'IT IS DRAW'
       }
       console.log(ur)
-      if (res === 'YOU WIN') {
-        incrementScore()
-      }
-      if (res === 'YOU LOSE') {
-        decrementScore()
-      }
       const clik = () => {
-        click(item)
+        swap()
+        incrementScore(res)
+        decrementScore(res)
       }
       return (
         <div>
           <div>
             <div>
               <h1>YOU</h1>
-              <img src={imageUrl} />
+              <img src={imageUrl} alt="your choice" className="btn" />
             </div>
             <div>
               <h1>OPPONENT</h1>
-              <img src={ur} />
+              <img src={ur} alt="opponent choice" className="btn" />
             </div>
           </div>
           <div>
             <p>{res}</p>
-            <button onClick={clik}>Play Again</button>
+            <button onClick={clik}>PLAY AGAIN</button>
           </div>
         </div>
       )
